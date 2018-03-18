@@ -7,6 +7,7 @@ import argparse
 parser = argparse.ArgumentParser(prog="verdom")
 parser.add_argument("-p", action="store_true", help="Ping um ip")
 parser.add_argument('-d', action="store_true", help="Checar dados de um domínio")
+parser.add_argument('-w', action='store_true', help="Verificar whois do domínio")
 
 args = parser.parse_args()
 
@@ -35,6 +36,8 @@ def app():
         print("\n***SPF***")
         subprocess.call(['host', '-t', 'SPF', dominio])
 
-
+    if args.w:
+        dominio = input("Domínio: ")
+        subprocess.call(['whois', dominio])
 
 app()
